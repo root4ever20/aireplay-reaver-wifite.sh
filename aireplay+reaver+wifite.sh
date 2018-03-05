@@ -40,6 +40,7 @@ macchanger -r wlan0
 ifconfig wlan0 up
 echo -e "$Yellow [\]Mac-change for wlan0 interface is Done"
 sleep 3
+echo -e "$Cyan"
 airmon-ng start wlan0
 ifconfig  wlan0mon down
 macchanger -r wlan0mon
