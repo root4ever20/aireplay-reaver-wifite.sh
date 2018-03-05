@@ -38,11 +38,13 @@ airmon-ng stop wlan0
 ifconfig wlan0 down
 macchanger -r wlan0
 ifconfig wlan0 up
+echo -e "[\]Mac-change for wlan0 interface is Done"
+sleep 3
 airmon-ng start wlan0
 ifconfig  wlan0mon down
 macchanger -r wlan0mon
 ifconfig wlan0mon up
-echo -e "[\]Mac-changer Done"
+echo -e "[\]Mac-change for wlan0mon interface is Done"
 sleep 3
 echo -e "$Red===================================================================="
 sleep 2
