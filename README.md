@@ -9,6 +9,6 @@ git clone  https://github.com/root4ever20/aireplay-reaver-wifite.sh.git
 
 cd aireplay-reaver-wifite.sh
 
-chmod +x aireplay-reaver-wifite.sh
+chmod +x aireplay+reaver+wifite.sh
 
-./aireplay-reaver-wifite.sh
+./aireplay+reaver+wifite.sh
